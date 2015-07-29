@@ -52,6 +52,13 @@ void ILAPIENTRY iluGetImageInfo(ILinfo *Info)
 	Info->Palette		= iluCurImage->Pal.Palette;
 	Info->PalType		= iluCurImage->Pal.PalType;
 	Info->PalSize		= iluCurImage->Pal.PalSize;
+
+	// BigWorld integration fix, copy the Cubeflags from
+	// the current image, the Cubeflags were already present
+	// in the Info struct, but were not copied
+	Info->CubeFlags		= iluCurImage->CubeFlags;
+    // BigWorld
+    
 	iGetIntegervImage(iluCurImage, IL_NUM_IMAGES,             
 	                        (ILint*)&Info->NumNext);
 	iGetIntegervImage(iluCurImage, IL_NUM_MIPMAPS, 

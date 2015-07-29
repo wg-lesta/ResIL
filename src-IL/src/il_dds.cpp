@@ -215,6 +215,11 @@ ILboolean iLoadDdsCubemapInternal(ILimage* image, ILuint CompFormat)
 				if (Image->Faces == NULL)
 					return IL_FALSE;
 
+				// BigWorld integration fix, it tries to read the next face in the cubemap
+				// using the io member, so we need to copy it from the previous face
+				Image->Faces->io = Image->io;
+				// BigWorld
+
 				Image = Image->Faces;
 
 				if (CompFormat == PF_R16F
